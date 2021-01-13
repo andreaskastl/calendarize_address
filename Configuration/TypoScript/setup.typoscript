@@ -1,0 +1,29 @@
+plugin.tx_calendarize {
+	view {
+		templateRootPaths {
+			60 = EXT:calendarize_address/Resources/Private/Templates/
+		}
+
+		partialRootPaths {
+			60 = EXT:calendarize_address/Resources/Private/Partials/
+		}
+
+		layoutRootPaths {
+			60 = EXT:calendarize_address/Resources/Private/Layouts/
+		}
+	}
+	settings {
+	
+	    googleMaps {
+			id = googleMaps
+			key = {$plugin.tx_calendarize.settings.googleMaps.key}
+			zoom = {$plugin.tx_calendarize.settings.googleMaps.zoom}
+			width = 100%
+			height = 300px
+			mapTypeId = roadmap
+		}
+		
+		locationPid = {$plugin.tx_calendarize.settings.locationPid}
+		organizerPid = {$plugin.tx_calendarize.settings.organizerPid}
+	}
+}
