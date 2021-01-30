@@ -1,18 +1,28 @@
 <?php
-
-/**
- * Link to the location page.
- */
 declare(strict_types=1);
+
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 namespace AndreasKastl\CalendarizeAddress\ViewHelpers\Link;
 
 use AndreasKastl\CalendarizeAddress\Domain\Model\Location;
+use HDNET\Calendarize\ViewHelpers\Link\AbstractLinkViewHelper;
 
 /**
  * Link to the location page.
  */
-class LocationViewHelper extends \HDNET\Calendarize\ViewHelpers\Link\AbstractLinkViewHelper
+class LocationViewHelper extends AbstractLinkViewHelper
 {
     /**
      * Init arguments.
@@ -32,8 +42,6 @@ class LocationViewHelper extends \HDNET\Calendarize\ViewHelpers\Link\AbstractLin
     public function render()
     {
         if (!\is_object($this->arguments['location'])) {
-            $this->logger->error('Do not call location viewhelper without index');
-
             return $this->renderChildren();
         }
         $additionalParams = [
@@ -42,6 +50,9 @@ class LocationViewHelper extends \HDNET\Calendarize\ViewHelpers\Link\AbstractLin
             ],
         ];
 
-        return parent::renderLink($this->getPageUid($this->arguments['pageUid'], 'locationPid'), $additionalParams);
+        return parent::renderLink(
+            $this->getPageUid($this->arguments['pageUid'], 'locationPid'),
+            $additionalParams
+        );
     }
 }

@@ -2,8 +2,8 @@
 ## Introduction
 - Extends **Typo3 Calendar extension `calendarize`** with location and organizer records based on popular **Typo3 Address extension `tt_address`**
 - Includes adapted event detail view for calendarize extension
-- Provides new location view with address details and optionally a Google Maps visualisation of the location
-- Provides new organizer view with address details
+- Provides new location view with address details and related events. Optionally a Google Maps visualisation of the location is possible.
+- Provides new organizer view with address details and related events
 
 ## Administration
 
@@ -62,11 +62,11 @@ For location view and organizer view two separate pages with separate plugins ar
 3. Switch to the **Plugin** tab, select _"Calendarize location view"_ in the _"Selected Plugin"_ field, configure the sysfolder where event records are stored and save.
 
 **(B) Organizer View:**
-4. Switch to the **page view**
+1. Switch to the **page view**
    1. Create a new page for the organizer view or
    2. Select an existing page where you want to insert the organizer view
-5. Create a **new content element** and in the _“new content element wizard”_ scroll down to the _plugins_ section and select _"Calendarize - Organizer View"_
-6. Switch to the **Plugin** tab, configure the sysfolder where event records are stored and save.
+2. Create a **new content element** and in the _“new content element wizard”_ scroll down to the _plugins_ section and select _"Calendarize - Organizer View"_
+3. Switch to the **Plugin** tab, configure the sysfolder where event records are stored and save.
 
 **Activation and Template Configuration**
 To finally activate the links from event detail view to location and organizer view, please configure the page ids:
@@ -86,7 +86,7 @@ If routing is required for location or organizer records, the following configur
 	  CalendarizeLocation:
 		type: Extbase
 		limitToPages:
-		  - 10
+		  - 10 <= INSERT HERE ID OF PAGE A
 		namespace: tx_calendarize_location
 		routes:
 		  - routePath: '/{calendarize_location}'
@@ -104,7 +104,7 @@ If routing is required for location or organizer records, the following configur
 	  CalendarizeOrganizer:
 		type: Extbase
 		limitToPages:
-		  - 11
+		  - 11 <= INSERT HERE ID OF PAGE B
 		namespace: tx_calendarize_organizer
 		routes:
 		  - routePath: '/{calendarize_organizer}'

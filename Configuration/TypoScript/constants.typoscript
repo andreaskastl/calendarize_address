@@ -1,17 +1,15 @@
 plugin.tx_calendarize {
+    settings {
+        # cat=calendarize//0500; type=string; label=Google Maps API key: Insert your API key for Google Maps here. If key is empty, map will not be shown in location view.
+        googleMaps.key = 		
 
-	settings {
-	
-		# cat=calendarize//0500; type=string; label=Google Maps API key: Insert your API key for Google Maps here. If key is empty, map will not be shown in location view.
-		googleMaps.key = 		
-		
-		# cat=calendarize//0510; type=int[0-20]; label=Google Maps zoom level: Default zoom level is 15.
-		googleMaps.zoom = 15
+        # cat=calendarize//0510; type=int[0-20]; label=Google Maps zoom level: Default zoom level is 15.
+        googleMaps.zoom = 15
 
-		# cat=calendarize//0520; type=int; label=Location View: Specify the page id of the location view.
-		locationPid = 
-		
-		# cat=calendarize//0530; type=int; label=Organizer View: Specify the page id of the organizer view.
-		organizerPid = 
-	}
+        # cat=calendarize//0520; type=int; label=Location View: Specify the page id of the location view.
+        locationPid = 
+
+        # cat=calendarize//0530; type=int; label=Organizer View: Specify the page id of the organizer view.
+        organizerPid = 
+    }
 }

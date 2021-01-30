@@ -4,32 +4,32 @@ declare(strict_types=1);
 
 // define additional fields
 $tempColumns = [
-	'location_pid' => [
-		'label' => 'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.locationPid',
-		'exclude' => 1,
-		'config' => [
-			'type' => 'group',
-			'internal_type' => 'db',
-			'allowed' => 'pages',
-			'maxitems' => 1,
-			'minitems' => 0,
-			'size' => 1,
-			'default' => 0
-		]
-	],
-	'organizer_pid' => [
-		'label' => 'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerPid',
-		'exclude' => 1,
-		'config' => [
-			'type' => 'group',
-			'internal_type' => 'db',
-			'allowed' => 'pages',
-			'maxitems' => 1,
-			'minitems' => 0,
-			'size' => 1,
-			'default' => 0
-		]		
- 	]
+    'location_pid' => [
+        'label' => 'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.locationPid',
+        'exclude' => 1,
+        'config' => [
+            'type' => 'group',
+            'internal_type' => 'db',
+            'allowed' => 'pages',
+            'maxitems' => 1,
+            'minitems' => 0,
+            'size' => 1,
+            'default' => 0
+        ]
+    ],
+    'organizer_pid' => [
+        'label' => 'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerPid',
+        'exclude' => 1,
+        'config' => [
+            'type' => 'group',
+            'internal_type' => 'db',
+            'allowed' => 'pages',
+            'maxitems' => 1,
+            'minitems' => 0,
+            'size' => 1,
+            'default' => 0
+        ]
+    ]
 ];
 
 // add fields to TCA (not shown yet in backend output)
@@ -37,24 +37,26 @@ $tempColumns = [
 
 // add fields to palette
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette(
- 'tx_calendarize_domain_model_pluginconfiguration',
- 'tx_calendarize_address_location_pid',
- 'location_pid'
+    'tx_calendarize_domain_model_pluginconfiguration',
+    'tx_calendarize_address_location_pid',
+    'location_pid'
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette(
- 'tx_calendarize_domain_model_pluginconfiguration',
- 'tx_calendarize_address_organizer_pid',
- 'organizer_pid'
+    'tx_calendarize_domain_model_pluginconfiguration',
+    'tx_calendarize_address_organizer_pid',
+    'organizer_pid'
 );
 
 // add palette to show in backend output
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-	'tx_calendarize_domain_model_pluginconfiguration','--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.locationPid;tx_calendarize_address_location_pid',
-	'',
-	'before:booking_pid'
+    'tx_calendarize_domain_model_pluginconfiguration',
+    '--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.locationPid;tx_calendarize_address_location_pid',
+    '',
+    'before:booking_pid'
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-	'tx_calendarize_domain_model_pluginconfiguration','--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerPid;tx_calendarize_address_organizer_pid',
-	'',
-	'after:day_pid'
+    'tx_calendarize_domain_model_pluginconfiguration',
+    '--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerPid;tx_calendarize_address_organizer_pid',
+    '',
+    'after:day_pid'
 );

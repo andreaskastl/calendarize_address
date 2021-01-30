@@ -1,80 +1,80 @@
 <div xmlns="http://www.w3.org/1999/xhtml" lang="en"
-		 xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-		 xmlns:c="http://typo3.org/ns/HDNET/Calendarize/ViewHelpers"
-		 xmlns:a="http://typo3.org/ns/FriendsOfTYPO3/TtAddress/ViewHelpers"
-		 xmlns:ca="http://typo3.org/ns/AndreasKastl/CalendarizeAddress/ViewHelpers">
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:c="http://typo3.org/ns/HDNET/Calendarize/ViewHelpers"
+     xmlns:a="http://typo3.org/ns/FriendsOfTYPO3/TtAddress/ViewHelpers"
+     xmlns:ca="http://typo3.org/ns/AndreasKastl/CalendarizeAddress/ViewHelpers">
 
-<f:alias map="{event: index.originalObject}">
-	<h1>
-		<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}"/>
-		<c:titleTag><f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}"/></c:titleTag>
-	</h1>
-	<h3 class="state-{index.state}">
-		<f:if condition="{index.state}=='canceled'">
-			<f:then>
-				<f:translate key="canceled" />
-			</f:then>
-			<f:else>
-				<f:render partial="DateInformation" arguments="{index: index}"/>
-			</f:else>
-		</f:if>
-	</h3>
+  <f:alias map="{event: index.originalObject}">
+    <h1>
+      <f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}"/>
+      <c:titleTag><f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}"/></c:titleTag>
+    </h1>
+    <h3 class="state-{index.state}">
+      <f:if condition="{index.state}=='canceled'">
+        <f:then>
+          <f:translate key="canceled" />
+        </f:then>
+        <f:else>
+          <f:render partial="DateInformation" arguments="{index: index}"/>
+        </f:else>
+      </f:if>
+    </h3>
 
-	<div class="text">
-		<f:format.html>{event.description}</f:format.html>
-	</div>
+    <div class="text">
+      <f:format.html>{event.description}</f:format.html>
+    </div>
 
-	<dl class="dl-horizontal meta">
-		<f:if condition="{event.locationAddress}"><f:then>
-			<dt><f:translate key="tx_calendarize_domain_model_event.location" />:</dt>
-			<dd><f:for each="{event.locationAddress}" as="location"><ca:link.location location="{location}">{location.name}</ca:link.location><br/></f:for>	
-			</dd></f:then>
-			<f:else>
-			<f:if condition="{event.location}">
-			<dt><f:translate key="tx_calendarize_domain_model_event.location" />:</dt>
-			<dd>{event.location}</dd>
-			</f:if>
-			</f:else>
-		</f:if>
-		<f:if condition="{event.organizerAddress}"><f:then>
-			<dt><f:translate key="tx_calendarize_domain_model_event.organizer" />:</dt>
-			<dd><f:for each="{event.organizerAddress}" as="organizer"><ca:link.organizer organizer="{organizer}">{organizer.name}</ca:link.organizer><br/></f:for></dd></f:then>
-			<f:else>
-			<f:if condition="{event.organizer}">
-			<dt><f:translate key="tx_calendarize_domain_model_event.organizer" />:</dt>
-			<dd>{event.organizer}</dd>
-			</f:if>		
-			</f:else>
-		</f:if>
-	</dl>
+    <dl class="dl-horizontal meta">
+      <f:if condition="{event.locationAddress}"><f:then>
+          <dt><f:translate key="tx_calendarize_domain_model_event.location" />:</dt>
+          <dd><f:for each="{event.locationAddress}" as="location"><ca:link.location location="{location}">{location.name}</ca:link.location><br/></f:for>	
+          </dd></f:then>
+        <f:else>
+          <f:if condition="{event.location}">
+            <dt><f:translate key="tx_calendarize_domain_model_event.location" />:</dt>
+            <dd>{event.location}</dd>
+          </f:if>
+        </f:else>
+      </f:if>
+      <f:if condition="{event.organizerAddress}"><f:then>
+          <dt><f:translate key="tx_calendarize_domain_model_event.organizer" />:</dt>
+          <dd><f:for each="{event.organizerAddress}" as="organizer"><ca:link.organizer organizer="{organizer}">{organizer.name}</ca:link.organizer><br/></f:for></dd></f:then>
+        <f:else>
+          <f:if condition="{event.organizer}">
+            <dt><f:translate key="tx_calendarize_domain_model_event.organizer" />:</dt>
+            <dd>{event.organizer}</dd>
+          </f:if>		
+        </f:else>
+      </f:if>
+    </dl>
 
-	<f:if condition="{event.images}">
-		<div class="images">
-			<f:for each="{event.images}" as="image" iteration="i">
-				<f:image src="{image.uid}" treatIdAsReference="1" alt="" maxWidth="300" class="img-rounded"/>
-			</f:for>
-		</div>
-	</f:if>
+    <f:if condition="{event.images}">
+      <div class="images">
+        <f:for each="{event.images}" as="image" iteration="i">
+          <f:image src="{image.uid}" treatIdAsReference="1" alt="" maxWidth="300" class="img-rounded"/>
+        </f:for>
+      </div>
+    </f:if>
 
-	<f:if condition="{event.downloads}">
-		<div class="downloads">
-			<f:for each="{event.downloads}" as="download" iteration="i">
-				<a href="{download.originalResource.publicUrl}">{download.originalResource.publicUrl}</a>
-			</f:for>
-		</div>
-	</f:if>
+    <f:if condition="{event.downloads}">
+      <div class="downloads">
+        <f:for each="{event.downloads}" as="download" iteration="i">
+          <a href="{download.originalResource.publicUrl}">{download.originalResource.publicUrl}</a>
+        </f:for>
+      </div>
+    </f:if>
 
-	<f:if condition="{settings.bookingPid}">
-		<f:if condition="{event.bookable}">
-			<c:link.booking index="{index}" class="btn btn-default btn-primary">
-				<f:translate key="booking" />
-				<span class="glyphicon glyphicon-arrow-right"></span>
-			</c:link.booking>
-		</f:if>
-	</f:if>
-</f:alias>
+    <f:if condition="{settings.bookingPid}">
+      <f:if condition="{event.bookable}">
+        <c:link.booking index="{index}" class="btn btn-default btn-primary">
+          <f:translate key="booking" />
+          <span class="glyphicon glyphicon-arrow-right"></span>
+        </c:link.booking>
+      </f:if>
+    </f:if>
+  </f:alias>
 
-<c:ifExtensionLoaded extensionKey="schema">
-	<f:render partial="{index.configuration.partialIdentifier}/StructuredData/Detail" arguments="{index: index}"/>
-</c:ifExtensionLoaded>
+  <c:ifExtensionLoaded extensionKey="schema">
+    <f:render partial="{index.configuration.partialIdentifier}/StructuredData/Detail" arguments="{index: index}"/>
+  </c:ifExtensionLoaded>
 </div>

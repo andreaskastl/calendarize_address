@@ -1,120 +1,140 @@
 <div xmlns="http://www.w3.org/1999/xhtml" lang="en"
-		 xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-		 xmlns:c="http://typo3.org/ns/HDNET/Calendarize/ViewHelpers"
-		 xmlns:a="http://typo3.org/ns/FriendsOfTYPO3/TtAddress/ViewHelpers">
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:c="http://typo3.org/ns/HDNET/Calendarize/ViewHelpers"
+     xmlns:a="http://typo3.org/ns/FriendsOfTYPO3/TtAddress/ViewHelpers">
 
-<f:layout name="Default"/>
+  <f:layout name="Default"/>
 
-<f:section name="Main">
+  <f:section name="Main">
+    <f:if condition="{address}">
+      <f:then>
+        <f:render section="address" arguments="{_all}"/>
+        <f:render section="events" arguments="{_all}"/>
+      </f:then>
+      <f:else>
+        <f:render section="error" arguments="{_all}"/>
+      </f:else>
+    </f:if>
+  </f:section>
 
-<div class="vcard tt_address_detail" itemscope itemtype="http://schema.org/Person">
-    <h1 itemprop="name">{address.name}</h1>
-	<c:titleTag><f:format.htmlentitiesDecode>{address.name}</f:format.htmlentitiesDecode></c:titleTag>	
-    <f:render section="position" partial="Address/Address" arguments="{_all}"/>
+  <f:section name="address">
+    <div itemscope itemtype="http://schema.org/Person">
+      <h1 itemprop="name" class="py-3">{address.name}</h1>
+      <c:titleTag><f:format.htmlentitiesDecode>{address.name}</f:format.htmlentitiesDecode></c:titleTag>	
+      <f:render section="position" partial="Address/Address" arguments="{_all}"/>
 
-    <f:if condition="{address.image}">
+      <f:if condition="{address.image}">
         <f:then>
-            <div class="row">
-                <div class="col-md-8">
-                    <f:render section="content" arguments="{_all}"/>
-                </div>			
-                <div class="col-md-4">
-                    <figure class="figure">
-                        <f:image image="{address.firstImage}" width="600"
-                                 class="img-fluid"
-                                 alt="{img.originalResource.alt}"
-                                 title="{img.originalResource.title}"
-                                 additionalAttributes="{itemprop:'image'}"/>
-                        <f:if condition="{address.firstImage.originalResource.description}">
-                            <figcaption class="figure-caption">
-                                {address.firstImage.originalResource.description ->
-                                f:format.nl2br()}
-                            </figcaption>
-                        </f:if>
-                    </figure>
-                </div>
+          <div class="row">
+            <div class="col-md-8">
+              <f:render section="content" arguments="{_all}"/>
+            </div>			
+            <div class="col-md-4">
+              <figure class="figure">
+                <f:image image="{address.firstImage}" width="600"
+                         class="img-fluid"
+                         alt="{img.originalResource.alt}"
+                         title="{img.originalResource.title}"
+                         additionalAttributes="{itemprop:'image'}"/>
+                <f:if condition="{address.firstImage.originalResource.description}">
+                  <figcaption class="figure-caption">
+                    {address.firstImage.originalResource.description ->
+                    f:format.nl2br()}
+                  </figcaption>
+                </f:if>
+              </figure>
             </div>
+          </div>
         </f:then>
         <f:else>
-            <f:render section="content" arguments="{_all}"/>
+          <f:render section="content" arguments="{_all}"/>
         </f:else>
-    </f:if>
-</div>
-</f:section>
+      </f:if>
+    </div>
+  </f:section>
 
-<f:section name="content">
+  <f:section name="content">
     <f:if condition="{address.description}">
-        <div class="description" itemprop="description">
-            {address.description -> f:format.html()}
-        </div>
+      <div class="description" itemprop="description">
+        {address.description -> f:format.html()}
+      </div>
     </f:if>
 
     <f:render section="address" partial="Address/Address" arguments="{_all}"/>
 
     <f:if condition="{address.building} || {address.room}">
-        <ul class="list-inline">
-            <f:if condition="{address.building}">
-                <li class="list-inline-item">
-                    {f:translate(key:'label.building', extensionName:'TtAddress')}: {address.building}
-                </li>
-            </f:if>
+      <ul class="list-inline">
+        <f:if condition="{address.building}">
+          <li class="list-inline-item">
+            {f:translate(key:'label.building', extensionName:'TtAddress')}: {address.building}
+          </li>
+        </f:if>
 
-            <f:if condition="{address.room}">
-                <li class="list-inline-item">
-                    {f:translate(key:'label.room', extensionName:'TtAddress')}: {address.room}
-                </li>
-            </f:if>
-        </ul>
+        <f:if condition="{address.room}">
+          <li class="list-inline-item">
+            {f:translate(key:'label.room', extensionName:'TtAddress')}: {address.room}
+          </li>
+        </f:if>
+      </ul>
     </f:if>
 
     <f:render section="contact" partial="Address/Address" arguments="{_all}"/>
     <f:render section="social" partial="Address/Address" arguments="{_all}"/>
 
     <f:if condition="{address.image -> f:count()} > 1">
-        <div class="address-image-rows">
-            <div class="row">
-                <f:for each="{address.image}" as="img" iteration="iterator">
-                    <f:if condition="{iterator.cycle}>1">
-                        <div class="col-md-4">
-                            <figure class="figure">
-                                <f:if condition="{img.originalResource.link}">
-                                    <f:then>
-                                        <f:link.typolink
-                                            parameter="{img.originalResource.link}"
-                                            class="media-object {settings.detail.imageClass}"
-                                            additionalAttributes="{title:img.originalResource.title}">
-                                            <f:image image="{img}" width="600"
-                                                     alt="{img.originalResource.alt}"
-                                                     title="{img.originalResource.title}"
-                                                     class="img-fluid"
-                                                     additionalAttributes="{itemprop:'image'}"/>
-                                        </f:link.typolink>
-                                    </f:then>
-                                    <f:else>
-                                        <a href="{f:uri.image(src:img.originalResource.publicUrl, maxWidth:1000)}"
-                                           class="media-object {settings.detail.imageClass}"
-                                           rel="images_tt_address_{address.uid}"
-                                           title="{img.originalResource.title}"
-                                           target="_blank">
-                                            <f:image image="{img}" width="600"
-                                                     alt="{img.originalResource.alt}"
-                                                     title="{img.originalResource.title}"
-                                                     class="img-fluid"
-                                                     additionalAttributes="{itemprop:'image'}"/>
-                                        </a>
-                                    </f:else>
-                                </f:if>
-                                <f:if condition="{img.originalResource.description}">
-                                    <figcaption class="figure-caption">
-                                        {img.originalResource.description -> f:format.nl2br()}
-                                    </figcaption>
-                                </f:if>
-                            </figure>
-                        </div>
-                    </f:if>
-                </f:for>
-            </div>
+      <div class="address-image-rows">
+        <div class="row">
+          <f:for each="{address.image}" as="img" iteration="iterator">
+            <f:if condition="{iterator.cycle}>1">
+              <div class="col-md-4">
+                <figure class="figure">
+                  <f:if condition="{img.originalResource.link}">
+                    <f:then>
+                      <f:link.typolink
+                          parameter="{img.originalResource.link}"
+                          class="media-object {settings.detail.imageClass}"
+                          additionalAttributes="{title:img.originalResource.title}">
+                        <f:image image="{img}" width="600"
+                                 alt="{img.originalResource.alt}"
+                                 title="{img.originalResource.title}"
+                                 class="img-fluid"
+                                 additionalAttributes="{itemprop:'image'}"/>
+                      </f:link.typolink>
+                    </f:then>
+                    <f:else>
+                      <a href="{f:uri.image(src:img.originalResource.publicUrl, maxWidth:1000)}"
+                         class="media-object {settings.detail.imageClass}"
+                         rel="images_tt_address_{address.uid}"
+                         title="{img.originalResource.title}"
+                         target="_blank">
+                        <f:image image="{img}" width="600"
+                                 alt="{img.originalResource.alt}"
+                                 title="{img.originalResource.title}"
+                                 class="img-fluid"
+                                 additionalAttributes="{itemprop:'image'}"/>
+                      </a>
+                    </f:else>
+                  </f:if>
+                  <f:if condition="{img.originalResource.description}">
+                    <figcaption class="figure-caption">
+                      {img.originalResource.description -> f:format.nl2br()}
+                    </figcaption>
+                  </f:if>
+                </figure>
+              </div>
+            </f:if>
+          </f:for>
         </div>
+      </div>
     </f:if>
-</f:section>
+  </f:section>
+
+  <f:section name="events">
+    <h2 class="py-3"><f:translate key="header.relatedEvents" extensionName="calendarize_address">Related</f:translate></h2>
+    <f:render partial="List" arguments="{_all}" /> 
+  </f:section> 
+
+  <f:section name="error">
+    <p><f:translate key="error.noOrganizer" extensionName="calendarize_address"/></p>
+  </f:section>   
 </div>
