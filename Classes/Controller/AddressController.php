@@ -127,6 +127,11 @@ class AddressController extends ActionController
                     $indices[] = $index;
                 }
             }
+            
+            // sort index by date and time asc
+            usort($indices, function ($a, $b) {
+                return $a->getStartDateComplete() <=> $b->getStartDateComplete();
+            });
 
             $this->view->assign('address', $location);
             $this->view->assign('indices', $indices);
@@ -153,6 +158,11 @@ class AddressController extends ActionController
                     $indices[] = $index;
                 }
             }
+
+            // sort index by date and time asc
+            usort($indices, function ($a, $b) {
+                return $a->getStartDateComplete() <=> $b->getStartDateComplete();
+            });
 
             $this->view->assign('address', $organizer);
             $this->view->assign('indices', $indices);
