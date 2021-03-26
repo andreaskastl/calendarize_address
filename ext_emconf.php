@@ -14,12 +14,13 @@ $EM_CONF[$_EXTKEY] = array(
     'author' => 'Andreas Kastl',
     'state' => 'stable',
     'clearCacheOnLoad' => true,
-    'version' => '1.2.0',
+    'version' => '1.3.0',
     'constraints' => [
         'depends' => [
+            'php' => '7.3.0-7.4.99',
             'typo3' => '10.4.12-10.4.99',
-            'calendarize' => '7.3.0-8.9.99',
-            'tt_address' => '5.1.2-5.9.99'
+            'calendarize' => '8.0.0-9.9.99',
+            'tt_address' => '5.2.0-5.9.99'
         ],
         'conflicts' => [],
         'suggests' => [],
