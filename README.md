@@ -15,8 +15,9 @@ The following prerequisites must be fulfilled to use `calendarize_address` exten
 
 ### Installation
 The extension needs to be installed as any other extension of TYPO3 CMS. Get the extension
-1. **Get it from the Extension Manager:** Press the _Retrieve/Update_ button and search for the extension key `calendarize_address` and import the extension from the repository.
-2. **Get it from typo3.org:** You can always get current version from https://extensions.typo3.org/extension/calendarize_address/ by downloading either the t3x or zip version. Upload the file afterwards in the Extension Manager.
+1. **Install extension via composer command:** Go to your folder where the root composer.json file is located. Type: `composer req andreaskastl/calendarize-address` to get the latest version that runs on your TYPO3 version.
+2. **Get it from the Extension Manager:** Press the _Retrieve/Update_ button and search for the extension key `calendarize_address` and import the extension from the repository.
+3. **Get it from typo3.org:** You can always get current version from https://extensions.typo3.org/extension/calendarize_address/ by downloading either the t3x or zip version. Upload the file afterwards in the Extension Manager.
 
 The extension ships some TypoScript code which needs to be included.
 1. Switch to the root page of your site.
@@ -83,39 +84,48 @@ To finally activate the links from event detail view to location and organizer v
 ### Routing
 If routing is required for location or organizer records, the following configuration will provide a good start for your configuration.
 
-	  CalendarizeLocation:
-		type: Extbase
-		limitToPages:
-		  - 10 <= INSERT HERE ID OF PAGE A
-		namespace: tx_calendarize_location
-		routes:
-		  - routePath: '/{calendarize_location}'
-			_controller: 'Address::location'
-			_arguments:
-			  calendarize_location: 'location'
-			requirements:
-			  calendarize_location: '\d'
-		defaultController: 'Address::location'
-		aspects:
-		  calendarize_location:
-			type: PersistedAliasMapper
-			tableName: tt_address
-			routeFieldName: slug
-	  CalendarizeOrganizer:
-		type: Extbase
-		limitToPages:
-		  - 11 <= INSERT HERE ID OF PAGE B
-		namespace: tx_calendarize_organizer
-		routes:
-		  - routePath: '/{calendarize_organizer}'
-			_controller: 'Address::organizer'
-			_arguments:
-			  calendarize_organizer: 'organizer'
-			requirements:
-			  calendarize_organizer: '\d'
-		defaultController: 'Address::organizer'
-		aspects:
-		  calendarize_organizer:
-			type: PersistedAliasMapper
-			tableName: tt_address
-			routeFieldName: slug
+        CalendarizeLocation:
+          type: Extbase
+          extension: Calendarize
+          plugin: Location  
+          limitToPages:
+            - 10 <= INSERT HERE ID OF PAGE A  
+          routes:
+            - routePath: '/{location}'
+              _controller: 'Address::location'
+            - routePath: '/{location}/page/{currentPage}'
+              _controller: 'Address::location'        
+          defaultController: 'Address::location'
+          aspects:
+            location:
+              type: PersistedAliasMapper
+              tableName: tt_address
+              routeFieldName: slug
+            currentPage:
+              type: StaticRangeMapper
+              start: '1'
+              end: '31' 
+        CalendarizeOrganizer:
+          type: Extbase
+          extension: Calendarize
+          plugin: Organizer 
+          limitToPages:
+            - 11 <= INSERT HERE ID OF PAGE B    
+          routes:
+            - routePath: '/{organizer}'
+              _controller: 'Address::organizer'
+            - routePath: '/{organizer}/page/{currentPage}'
+              _controller: 'Address::organizer'          
+          defaultController: 'Address::organizer'
+          aspects:
+            organizer:
+              type: PersistedAliasMapper
+              tableName: tt_address
+              routeFieldName: slug
+            currentPage:
+              type: StaticRangeMapper
+              start: '1'
+              end: '31' 
+
+## Change Log
+Please refer to the release documentation on https://github.com/andreaskastl/calendarize_address/releases

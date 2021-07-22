@@ -138,9 +138,33 @@
 
   <f:section name="events">
     <h2 class="py-3"><f:translate key="header.relatedEvents" extensionName="calendarize_address"/></h2>
-    <f:render partial="List" arguments="{_all}" /> 
-  </f:section> 
-  
+    <f:if condition="{indices -> f:count()}">
+      <f:then>
+        <f:if condition="{settings.hidePagination}">
+          <f:then>
+            <f:for each="{indices}" as="index">
+              <f:render partial="Event/ListItem" arguments="{index: index}" />
+            </f:for>
+          </f:then>
+          <f:else>
+            <f:if condition="{settings.paginateConfiguration.insertAbove -> f:or(alternative:0)}">
+              <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, location: address}" />
+            </f:if>
+            <f:for each="{pagination.paginator.paginatedItems}" as="index">
+              <f:render partial="Event/ListItem" arguments="{index: index}" />
+            </f:for>
+            <f:if condition="{settings.paginateConfiguration.insertBelow -> f:or(alternative:1)}">
+              <f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, location: address}" />
+            </f:if>
+          </f:else>
+        </f:if>
+      </f:then>
+      <f:else>
+        <f:translate key="no_events" />
+      </f:else>
+    </f:if>  
+  </f:section>    
+
   <f:section name="error">
     <p><f:translate key="error.noLocation" extensionName="calendarize_address"/></p>
   </f:section>  

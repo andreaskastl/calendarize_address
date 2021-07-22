@@ -22,7 +22,11 @@ use AndreasKastl\CalendarizeAddress\Domain\Model\Organizer;
 use AndreasKastl\CalendarizeAddress\Domain\Repository\EventRepository;
 use AndreasKastl\CalendarizeAddress\Domain\Repository\LocationRepository;
 use AndreasKastl\CalendarizeAddress\Domain\Repository\OrganizerRepository;
+use GeorgRinger\NumberedPagination\NumberedPagination;
+use HDNET\Calendarize\Domain\Model\Index;
 use HDNET\Calendarize\Domain\Repository\IndexRepository;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -110,11 +114,12 @@ class AddressController extends ActionController
     /**
      * Location action.
      *
-     * @param Location $location
+     * @param Location  $location       Location
+     * @param int       $currentPage    Page cursor
      *
      * @return string
      */
-    public function locationAction(Location $location = null)
+    public function locationAction(Location $location = null, int $currentPage = 1)
     {
         if ($location !== null) {
             $events = $this->eventRepository->findByLocationAddress($location);
@@ -135,17 +140,19 @@ class AddressController extends ActionController
 
             $this->view->assign('address', $location);
             $this->view->assign('indices', $indices);
+            $this->view->assign('pagination', $this->getPagination($indices, $currentPage));
         }
     }
 
     /**
      * Organizer action.
      *
-     * @param Organizer $organizer
+     * @param Organizer $organizer      Organizer
+     * @param int       $currentPage    Page cursor
      *
      * @return string
      */
-    public function organizerAction(Organizer $organizer = null)
+    public function organizerAction(Organizer $organizer = null, int $currentPage = 1)
     {
         if ($organizer !== null) {
             $events = $this->eventRepository->findByOrganizerAddress($organizer);
@@ -163,9 +170,37 @@ class AddressController extends ActionController
             usort($indices, function ($a, $b) {
                 return $a->getStartDateComplete() <=> $b->getStartDateComplete();
             });
-
+            
             $this->view->assign('address', $organizer);
             $this->view->assign('indices', $indices);
+            $this->view->assign('pagination', $this->getPagination($indices, $currentPage));
         }
+    }
+
+    /**
+     * Creates the pagination logic for the results.
+     *
+     * @param array $indices        Array of indices
+     * @param int   $currentPage    Page cursor
+     *
+     * @return array
+     */
+    protected function getPagination(array $indices, int $currentPage = 1): array
+    {
+        $paginateConfiguration = $this->settings['paginateConfiguration'] ?? [];
+        $itemsPerPage = (int)($paginateConfiguration['itemsPerPage'] ?? 10);
+        $maximumNumberOfLinks = (int)($paginateConfiguration['maximumNumberOfLinks'] ?? 10);
+
+        $paginator = new ArrayPaginator($indices, $currentPage, $itemsPerPage);
+        if (class_exists(NumberedPagination::class)) {
+            $pagination = new NumberedPagination($paginator, $maximumNumberOfLinks);
+        } else {
+            $pagination = new SimplePagination($paginator);
+        }
+
+        return [
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+        ];
     }
 }
