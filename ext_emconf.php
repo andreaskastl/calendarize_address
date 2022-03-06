@@ -19,7 +19,7 @@ $EM_CONF[$_EXTKEY] = array(
         'depends' => [
             'php' => '7.3.0-8.0.99',        
             'typo3' => '10.4.20-11.5.99',
-            'calendarize' => '11.0.0-11.9.99',
+            'calendarize' => '11.0.0-12.9.99',
             'tt_address' => '5.3.0-6.0.99'
         ],
         'conflicts' => [],
