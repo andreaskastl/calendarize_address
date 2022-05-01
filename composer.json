@@ -4,11 +4,29 @@
   "description": "Extends EXT:calendarize events with location and organizer records based on EXT:tt_address records and provides corresponding location and organizer views.",
   "license": "GPL-2.0-or-later",
   "require": {
-    "php": "^7.3 || ^7.4",
+    "php": "^7.4 || ^8.0 || ^8.1",
     "typo3/cms-core": "^10.4.20 || ^11.5",
-    "friendsoftypo3/tt-address": "^5.3 || ^6.0 || ^6.1", 
-    "lochmueller/calendarize": "^11.0 || ^12.0"
+    "friendsoftypo3/tt-address": "^6.0 || ^6.1", 
+    "lochmueller/calendarize": "^12.1"
   },
+  "authors": [
+    {
+      "name": "Andreas Kastl",
+      "role": "Developer",
+      "email": "typo3@andreaskastl.de",
+      "homepage": "https://github.com/andreaskastl/"
+    }
+  ],
+  "keywords": [
+    "typo3",
+    "calendarize",
+    "calendar",
+    "event",
+    "address"
+  ],
+  "support": {
+    "issues": "https://github.com/andreaskastl/calendarize_address/issues"
+  },  
   "replace": {
     "typo3-ter/calendarize-address": "self.version"
   },
