@@ -58,9 +58,9 @@ class LocationViewHelper extends AbstractLinkViewHelper
         $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
         if ($versionInformation->getMajorVersion() < 12) {
             // for TYPO3 v12 && calendarize <
-            $pageUid = $this->getPageUid($this->arguments['pageUid'], 'organizerPid');
+            $pageUid = $this->getPageUid($this->arguments['pageUid'], 'locationPid');
         } else {
-            $pageUid = $this->getPageUid( 'organizerPid');
+            $pageUid = $this->getPageUid( 'locationPid');
         }
         return parent::renderLink(
             $pageUid,
