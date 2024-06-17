@@ -3,12 +3,6 @@ defined('TYPO3') or die();
 
 call_user_func(
     function () {
-        // add static typoscript
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-            'calendarize_address',
-            'Configuration/TypoScript',
-            'Calendarize - Address Extension'
-        );
 
         // register event model, extends Calendarize default event model
         $configuration = [
