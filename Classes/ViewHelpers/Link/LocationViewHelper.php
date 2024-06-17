@@ -27,7 +27,7 @@ class LocationViewHelper extends AbstractLinkViewHelper
     /**
      * Init arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('location', Location::class, '', true);

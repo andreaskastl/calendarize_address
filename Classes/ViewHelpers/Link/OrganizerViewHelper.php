@@ -27,7 +27,7 @@ class OrganizerViewHelper extends AbstractLinkViewHelper
     /**
      * Init arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('organizer', Organizer::class, '', true);
