@@ -18,6 +18,8 @@ namespace AndreasKastl\CalendarizeAddress\ViewHelpers\Link;
 
 use AndreasKastl\CalendarizeAddress\Domain\Model\Location;
 use HDNET\Calendarize\ViewHelpers\Link\AbstractLinkViewHelper;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Link to the location page.
@@ -50,8 +52,18 @@ class LocationViewHelper extends AbstractLinkViewHelper
             ],
         ];
 
+        // signature of calendarize method AbstractLinkViewHelper::getPageUid was changed with
+        // Fix #796 - move argument resolving to abstract method
+        // in calendarize > 13.0.3
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() < 12) {
+            // for TYPO3 v12 && calendarize <
+            $pageUid = $this->getPageUid($this->arguments['pageUid'], 'organizerPid');
+        } else {
+            $pageUid = $this->getPageUid( 'organizerPid');
+        }
         return parent::renderLink(
-            $this->getPageUid($this->arguments['pageUid'], 'locationPid'),
+            $pageUid,
             $additionalParams
         );
     }
