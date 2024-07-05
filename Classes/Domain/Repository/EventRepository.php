@@ -24,7 +24,7 @@ use AndreasKastl\CalendarizeAddress\Domain\Model\Organizer;
  */
 class EventRepository extends \HDNET\Calendarize\Domain\Repository\EventRepository
 {
-    
+
     /**
      * Find by event location.
      *
@@ -37,21 +37,18 @@ class EventRepository extends \HDNET\Calendarize\Domain\Repository\EventReposito
         if ($location === null) {
             return;
         }
-        
+
         $query = $this->createQuery();
-        
+
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setIgnoreEnableFields(true);
-        
-        $constraints = [];
-        $constraints[] = $query->contains('locationAddress', $location);
-        
-        $query->matching($query->logicalAnd($constraints));
+
+        $query->matching($query->contains('locationAddress', $location));
         $result = $query->execute();
 
         return $result;
     }
-    
+
     /**
      * Find by event organizer.
      *
@@ -64,16 +61,13 @@ class EventRepository extends \HDNET\Calendarize\Domain\Repository\EventReposito
         if ($organizer === null) {
             return;
         }
-        
+
         $query = $this->createQuery();
-        
+
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setIgnoreEnableFields(true);
-        
-        $constraints = [];
-        $constraints[] = $query->contains('organizerAddress', $organizer);
-        
-        $query->matching($query->logicalAnd($constraints));
+
+        $query->matching($query->contains('organizerAddress', $organizer));
         $result = $query->execute();
 
         return $result;

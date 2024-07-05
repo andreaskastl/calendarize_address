@@ -1,10 +1,10 @@
 <?php
 
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') or die();
 
 call_user_func(
     function () {
-    
+
         // register event model, extends Calendarize default event model
         $configuration = [
             'uniqueRegisterKey' => 'Event', // A unique Key for the register (e.g. you Extension Key + "Event")

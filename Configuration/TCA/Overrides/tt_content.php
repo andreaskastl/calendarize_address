@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') or die();
 
 // register plugins
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(

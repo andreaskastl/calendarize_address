@@ -25,6 +25,7 @@ use AndreasKastl\CalendarizeAddress\Domain\Repository\OrganizerRepository;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use HDNET\Calendarize\Domain\Model\Index;
 use HDNET\Calendarize\Domain\Repository\IndexRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -119,7 +120,7 @@ class AddressController extends ActionController
      *
      * @return string
      */
-    public function locationAction(Location $location = null, int $currentPage = 1)
+    public function locationAction(Location $location = null, int $currentPage = 1): ResponseInterface
     {
         if ($location !== null) {
             $events = $this->eventRepository->findByLocationAddress($location);
@@ -132,7 +133,7 @@ class AddressController extends ActionController
                     $indices[] = $index;
                 }
             }
-            
+
             // sort index by date and time asc
             usort($indices, function ($a, $b) {
                 return $a->getStartDateComplete() <=> $b->getStartDateComplete();
@@ -142,6 +143,7 @@ class AddressController extends ActionController
             $this->view->assign('indices', $indices);
             $this->view->assign('pagination', $this->getPagination($indices, $currentPage));
         }
+        return $this->htmlResponse();
     }
 
     /**
@@ -152,7 +154,7 @@ class AddressController extends ActionController
      *
      * @return string
      */
-    public function organizerAction(Organizer $organizer = null, int $currentPage = 1)
+    public function organizerAction(Organizer $organizer = null, int $currentPage = 1): ResponseInterface
     {
         if ($organizer !== null) {
             $events = $this->eventRepository->findByOrganizerAddress($organizer);
@@ -170,11 +172,12 @@ class AddressController extends ActionController
             usort($indices, function ($a, $b) {
                 return $a->getStartDateComplete() <=> $b->getStartDateComplete();
             });
-            
+
             $this->view->assign('address', $organizer);
             $this->view->assign('indices', $indices);
             $this->view->assign('pagination', $this->getPagination($indices, $currentPage));
         }
+        return $this->htmlResponse();
     }
 
     /**
