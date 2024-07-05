@@ -4,10 +4,10 @@
   "description": "Extends EXT:calendarize events with location and organizer records based on EXT:tt_address records and provides corresponding location and organizer views.",
   "license": "GPL-2.0-or-later",
   "require": {
-    "php": "^7.4 || ^8",
-    "typo3/cms-core": "^11.5 || ^12.4.16",
-    "friendsoftypo3/tt-address": "^6.0 || ^6.1 || ^7 || ^8.1.0",
-    "lochmueller/calendarize": "^12.1 || ^13.0.6"
+    "php": "^8",
+    "typo3/cms-core": "^11.5 || ^12.4",
+    "friendsoftypo3/tt-address": "^7 || ^8",
+    "lochmueller/calendarize": "^12 || ^13"
   },
   "authors": [
     {
