@@ -59,14 +59,14 @@ For location view and organizer view two separate pages with separate plugins ar
 1. Switch to the **page view**
    1. Create a new page for the location view or
    2. Select an existing page where you want to insert the location view
-2. Create a **new content element** and in the _“new content element wizard”_ scroll down to the _plugins_ section and select _"Calendarize - Location View"_
+2. Create a **new content element** and in the _“new content element wizard”_ scroll down to the _Calendarize Elements_ section and select _"Calendarize - Location View"_
 3. Switch to the **Plugin** tab, select _"Calendarize location view"_ in the _"Selected Plugin"_ field, configure the sysfolder where event records are stored and save.
 
 **(B) Organizer View:**
 1. Switch to the **page view**
    1. Create a new page for the organizer view or
    2. Select an existing page where you want to insert the organizer view
-2. Create a **new content element** and in the _“new content element wizard”_ scroll down to the _plugins_ section and select _"Calendarize - Organizer View"_
+2. Create a **new content element** and in the _“new content element wizard”_ scroll down to the _Calendarize Elements_ section and select _"Calendarize - Organizer View"_
 3. Switch to the **Plugin** tab, configure the sysfolder where event records are stored and save.
 
 **Activation and Template Configuration**

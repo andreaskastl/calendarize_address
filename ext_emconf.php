@@ -19,9 +19,9 @@ $EM_CONF[$_EXTKEY] = array(
     'constraints' => [
         'depends' => [
             'php' => '8.0.0-8.3.99',
-            'typo3' => '11.5.30-12.4.99',
-            'tt_address' => '7.0.0-8.9.99',
-            'calendarize' => '12.1.0-13.9.99'
+            'typo3' => '12.4.0-13.9.99',
+            'tt_address' => '7.0.0-9.9.99',
+            'calendarize' => '13.0.0-13.9.99'
         ],
         'conflicts' => [],
         'suggests' => [],

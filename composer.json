@@ -5,9 +5,9 @@
   "license": "GPL-2.0-or-later",
   "require": {
     "php": "^8",
-    "typo3/cms-core": "^11.5 || ^12.4",
-    "friendsoftypo3/tt-address": "^7 || ^8",
-    "lochmueller/calendarize": "^12 || ^13"
+    "typo3/cms-core": "^12.4 || ^13.4",
+    "friendsoftypo3/tt-address": "^7 || ^8 || ^9",
+    "lochmueller/calendarize": "^13"
   },
   "authors": [
     {
