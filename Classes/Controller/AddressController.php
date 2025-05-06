@@ -67,7 +67,7 @@ class AddressController extends ActionController
     /**
      * Initialize action
      */
-    public function initializeAction()
+    public function initializeAction(): void
     {
         parent::initializeAction();
     }

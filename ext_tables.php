@@ -1,4 +1,9 @@
 <?php
+
+declare(strict_types=1);
+
+use \HDNET\Calendarize\Register;
+
 defined('TYPO3') or die();
 
 call_user_func(
@@ -14,6 +19,6 @@ call_user_func(
             'required'          => true, // set to true, than your event need a least one event configuration
             //'subClasses'        => array of classnames, // insert here all classNames, which are used for the extended models
         ];
-        \HDNET\Calendarize\Register::extTables($configuration);
+        Register::extTables($configuration);
     }
 );

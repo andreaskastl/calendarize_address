@@ -1,5 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use AndreasKastl\CalendarizeAddress\Controller\AddressController;
+use \HDNET\Calendarize\Register;
+
 defined('TYPO3') or die();
 
 call_user_func(
@@ -15,48 +21,32 @@ call_user_func(
             'required'          => true, // set to true, than your event need a least one event configuration
             //'subClasses'        => array of classnames, // insert here all classNames, which are used for the extended models
         ];
-        \HDNET\Calendarize\Register::extLocalconf($configuration);
+        Register::extLocalconf($configuration);
 
-        // configure plugins
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'calendarize',
+        // Configure plugins
+        ExtensionUtility::configurePlugin(
+            // extension name, matching the PHP namespaces (but without the vendor)
+            'Calendarize',
+            // arbitrary, but unique plugin name (not visible in the backend)
             'Location',
-            [
-                \AndreasKastl\CalendarizeAddress\Controller\AddressController::class => 'location',
-            ],
+            // all actions
+            [AddressController::class => 'location'],
             // non-cacheable actions
-            [
-                \AndreasKastl\CalendarizeAddress\Controller\AddressController::class => '',
-            ]
+            [AddressController::class => 'location'],
+            ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
         );
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'calendarize',
+
+        ExtensionUtility::configurePlugin(
+            // extension name, matching the PHP namespaces (but without the vendor)
+            'Calendarize',
+            // arbitrary, but unique plugin name (not visible in the backend)
             'Organizer',
-            [
-                \AndreasKastl\CalendarizeAddress\Controller\AddressController::class => 'organizer',
-            ],
+            // all actions
+            [AddressController::class => 'organizer'],
             // non-cacheable actions
-            [
-                \AndreasKastl\CalendarizeAddress\Controller\AddressController::class => '',
-            ]
+            [AddressController::class => 'organizer'],
+            ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
         );
 
-        // register wizards
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:calendarize_address/Configuration/TsConfig/Page/Mod/Wizards/NewContentElement.tsconfig">'
-        );
-
-        // register icons
-        $icons = [
-            'calendarize-address' => 'Extension.svg',
-        ];
-        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-        foreach ($icons as $identifier => $path) {
-            $iconRegistry->registerIcon(
-                $identifier,
-                \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-                ['source' => 'EXT:calendarize_address/Resources/Public/Icons/' . $path]
-            );
-        }
     }
 );
