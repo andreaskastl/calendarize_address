@@ -1,0 +1,20 @@
+mod.wizards.newContentElement.wizardItems.calendarize.elements {
+    calendarize_location {
+        iconIdentifier = calendarize-address
+        title = LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.location.title
+        description = LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.location.description
+        tt_content_defValues {
+            CType = list
+            list_type = calendarize_location
+        }
+    }
+    calendarize_organizer {
+        iconIdentifier = calendarize-address
+        title = LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.organizer.title
+        description = LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.organizer.description
+        tt_content_defValues {
+            CType = list
+            list_type = calendarize_organizer
+        }
+    }
+}
