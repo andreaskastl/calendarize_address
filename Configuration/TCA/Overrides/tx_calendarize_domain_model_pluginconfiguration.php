@@ -49,13 +49,13 @@ $tempColumns = [
 // add palette to show in backend output
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tx_calendarize_domain_model_pluginconfiguration',
-    '--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.locationPid;tx_calendarize_address_location_pid',
+    '--palette--;LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.locationPid;tx_calendarize_address_location_pid',
     '',
     'before:booking_pid'
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tx_calendarize_domain_model_pluginconfiguration',
-    '--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerPid;tx_calendarize_address_organizer_pid',
+    '--palette--;LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerPid;tx_calendarize_address_organizer_pid',
     '',
     'after:day_pid'
 );

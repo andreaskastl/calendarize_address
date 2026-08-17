@@ -1,0 +1,56 @@
+categories:
+  calendarize:
+    label: 'Calendarize Address'
+  calendarize.templates:
+    label: 'Templates'
+    parent: calendarize
+  calendarize.pages:
+    label: 'Pages'
+    parent: calendarize
+  calendarize.googleMaps:
+    label: 'Google Maps'
+    parent: calendarize
+
+settings:
+  calendarize.templateRootPath:
+    label: 'Path to template root (FE)'
+    category: calendarize.templates
+    description: ''
+    type: string
+    default: 'EXT:calendarize_address/Resources/Private/Templates/'
+  calendarize.partialRootPath:
+    label: 'Path to template partials (FE)'
+    category: calendarize.templates
+    description: ''
+    type: string
+    default: 'EXT:calendarize_address/Resources/Private/Partials/'
+  calendarize.layoutRootPath:
+    label: 'Path to template layouts (FE)'
+    category: calendarize.templates
+    description: ''
+    type: string
+    default: 'EXT:calendarize_address/Resources/Private/Layouts/'
+  calendarize.locationPid:
+    label: 'Location View'
+    category: calendarize.pages
+    description: 'Specify the page id of the location view'
+    type: page
+    default: 0    
+  calendarize.organizerPid:
+    label: 'Organizer View'
+    category: calendarize.pages
+    description: 'Specify the page id of the organizer view.'
+    type: page
+    default: 0        
+  calendarize.googleMaps.key:
+    label: 'Key'
+    category: calendarize.googleMaps
+    description: 'Google Maps API key. Insert your API key for Google Maps here. If key is empty, map will not be shown in location view.'
+    type: string
+    default: ''
+  calendarize.googleMaps.zoom:
+    label: 'Zoom'
+    category: calendarize.googleMaps
+    description: 'Google Maps Zoom Level. Default zoom level is 15.'
+    type: int
+    default: 15   

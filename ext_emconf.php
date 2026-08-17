@@ -15,13 +15,13 @@ $EM_CONF[$_EXTKEY] = array(
     'author_email' => 'typo3@andreaskastl.de',
     'state' => 'stable',
     'clearCacheOnLoad' => true,
-    'version' => '7.1.0',
+    'version' => '8.0.0',
     'constraints' => [
         'depends' => [
             'php' => '8.0.0-8.3.99',
-            'typo3' => '12.4.0-13.9.99',
-            'tt_address' => '9.0.0-9.9.99',
-            'calendarize' => '13.0.0-14.9.99'
+            'typo3' => '13.4.0-14.9.99',
+            'tt_address' => '10.0.0-10.9.99',
+            'calendarize' => '15.0.0-15.9.99'
         ],
         'conflicts' => [],
         'suggests' => [],

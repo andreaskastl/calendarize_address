@@ -1,0 +1,4 @@
+name: andreaskastl/calendarize-address
+label: Calendarize Address (Extbase/Fluid)
+dependencies: 
+  - lochmueller/calendarize

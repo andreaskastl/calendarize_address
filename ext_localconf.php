@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use AndreasKastl\CalendarizeAddress\Controller\AddressController;
 use \HDNET\Calendarize\Register;
@@ -36,6 +35,7 @@ call_user_func(
             [AddressController::class => 'location'],
             // non-cacheable actions
             [AddressController::class => 'location'],
+            ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         ExtensionUtility::configurePlugin(
@@ -47,14 +47,8 @@ call_user_func(
             [AddressController::class => 'organizer'],
             // non-cacheable actions
             [AddressController::class => 'organizer'],
+            ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
-
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() <= 12) {
-            // Include new content elements to modWizards
-            ExtensionManagementUtility::addPageTSConfig('
-                @import \'EXT:calendarize_address/Configuration/page.tsconfig\'
-            ');
-        }        
 
     }
 );

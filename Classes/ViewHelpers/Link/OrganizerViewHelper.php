@@ -18,7 +18,6 @@ namespace AndreasKastl\CalendarizeAddress\ViewHelpers\Link;
 
 use AndreasKastl\CalendarizeAddress\Domain\Model\Organizer;
 use HDNET\Calendarize\ViewHelpers\Link\AbstractLinkViewHelper;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -41,10 +40,10 @@ class OrganizerViewHelper extends AbstractLinkViewHelper
      *
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         if (!\is_object($this->arguments['organizer'])) {
-            return $this->renderChildren();
+            return (string)$this->renderChildren();
         }
         $additionalParams = [
             'tx_calendarize_organizer' => [
@@ -52,16 +51,8 @@ class OrganizerViewHelper extends AbstractLinkViewHelper
             ],
         ];
 
-        // signature of calendarize method AbstractLinkViewHelper::getPageUid was changed with
-        // Fix #796 - move argument resolving to abstract method
-        // in calendarize > 13.0.3
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() < 12) {
-            // for TYPO3 v12 && calendarize <
-            $pageUid = $this->getPageUid($this->arguments['pageUid'], 'organizerPid');
-        } else {
-            $pageUid = $this->getPageUid( 'organizerPid');
-        }
+        // Use Calendarize v13+ AbstractLinkViewHelper signature
+        $pageUid = $this->getPageUid('organizerPid');
 
         return parent::renderLink(
             $pageUid,

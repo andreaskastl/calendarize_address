@@ -1,15 +1,15 @@
 plugin.tx_calendarize {
     view {
         templateRootPaths {
-            60 = EXT:calendarize_address/Resources/Private/Templates/
+            150 = EXT:calendarize_address/Resources/Private/Templates/
         }
 
         partialRootPaths {
-            60 = EXT:calendarize_address/Resources/Private/Partials/
+            150 = EXT:calendarize_address/Resources/Private/Partials/
         }
 
         layoutRootPaths {
-            60 = EXT:calendarize_address/Resources/Private/Layouts/
+            150 = EXT:calendarize_address/Resources/Private/Layouts/
         }
     }
     settings {

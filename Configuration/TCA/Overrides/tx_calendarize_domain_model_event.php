@@ -63,13 +63,13 @@ $tempColumns = [
 // add palette to show in backend output
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tx_calendarize_domain_model_event',
-    '--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerAddress;tx_calendarize_address_organizer_fields',
+    '--palette--;LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.organizerAddress;tx_calendarize_address_organizer_fields',
     '',
     'before:organizer'
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tx_calendarize_domain_model_event',
-    '--palette--;LLL:EXT:tx_calendarize_address/Resources/Private/Language/locallang.xlf:label.locationAddress;tx_calendarize_address_location_fields',
+    '--palette--;LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:label.locationAddress;tx_calendarize_address_location_fields',
     '',
     'before:location'
 );

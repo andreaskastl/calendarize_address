@@ -19,6 +19,6 @@ call_user_func(
             'required'          => true, // set to true, than your event need a least one event configuration
             //'subClasses'        => array of classnames, // insert here all classNames, which are used for the extended models
         ];
-        Register::extTables($configuration);
+        Register::createTcaConfiguration($configuration);
     }
 );

@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 defined('TYPO3') or die();
@@ -16,21 +15,29 @@ $pluginSignature = ExtensionUtility::registerPlugin(
     'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.location.title',
     // icon identifier
     'calendarize-address',
-    'calendarize_special',
+    'calendarize',
     // plugin description
     'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.location.description',
+    'FILE:EXT:calendarize_address/Configuration/FlexForms/Calendar.xml',
+);
+
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--div--;Configuration,pi_flexform,',
+    $pluginSignature,
+    'after:subheader',
+);
+
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    '*',
+    'FILE:EXT:calendarize_address/Configuration/FlexForms/Calendar.xml',
+    $pluginSignature,
 );
 
 // Disable the display of layout and select_key fields for the plugin
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'pages,recursive';
+//$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'pages,recursive';
 // Activate the display of the plug-in flexform field and set FlexForm definition
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-
-// Add flexform
-ExtensionManagementUtility::addPiFlexFormValue(
-    $pluginSignature,
-    'FILE:EXT:calendarize_address/Configuration/FlexForms/Calendar.xml',
-);
+//$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 
 // Register plugin
 $pluginSignature = ExtensionUtility::registerPlugin(
@@ -42,18 +49,26 @@ $pluginSignature = ExtensionUtility::registerPlugin(
     'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.organizer.title',
     // icon identifier
     'calendarize-address',
-    'calendarize_special',
+    'calendarize',
     // plugin description
     'LLL:EXT:calendarize_address/Resources/Private/Language/locallang.xlf:plugin.organizer.description',
+    'FILE:EXT:calendarize_address/Configuration/FlexForms/Calendar.xml',
+);
+
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--div--;Configuration,pi_flexform,',
+    $pluginSignature,
+    'after:subheader',
+);
+
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    '*',
+    'FILE:EXT:calendarize_address/Configuration/FlexForms/Calendar.xml',
+    $pluginSignature,
 );
 
 // Disable the display of layout and select_key fields for the plugin
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'pages,recursive';
+//$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'pages,recursive';
 // Activate the display of the plug-in flexform field and set FlexForm definition
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-
-// Add flexform
-ExtensionManagementUtility::addPiFlexFormValue(
-    $pluginSignature,    
-    'FILE:EXT:calendarize_address/Configuration/FlexForms/Calendar.xml',
-);
+//$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
